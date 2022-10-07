@@ -1,0 +1,26 @@
+{
+  "name": "hexo-db-generator",
+  "version": "2.0.0",
+  "description": "Generate a JSON file contains the Database of HEXO blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsemAlhaidary/hexo-db-generator.git"
+  },
+  "keywords": [
+    "hexo",
+    "database",
+    "generator"
+  ],
+  "author": "Asem Alhaidary",
+  "license": "ISC",
+  "dependencies": {
+    "circular-json": "^0.5.9",
+    "nunjucks": "^3.2.3",
+    "utils-merge": "^1.0.1"
+  },
+  "homepage": "https://github.com/AsemAlhaidary/hexo-db-generator#readme"
+}
