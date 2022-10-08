@@ -1,5 +1,4 @@
 const merge = require('utils-merge');
-const circularJSON = require('circular-json');
 const path = require('path');
 
 let config = hexo.config.database = merge({
@@ -29,11 +28,38 @@ if (path.extname(config.path) == '.json') {
 
     if (posts) {
       posts.forEach(post => {
+        // Delete 'next' & 'prev' properties that causes this error:
+        // "TypeError: Converting circular structure to JSON"
+        delete post['next'];
+        delete post['prev'];
+
+        // Delete all the posts in tags that causes this error:
+        // "TypeError: Converting circular structure to JSON"
+        if (post.hasOwnProperty('tags')) {
+          let tagsArr = post['tags']['data'];
+          tagsArr.forEach(tagObj => {
+            if (tagObj.hasOwnProperty('posts')) {
+              tagObj['posts']['data'] = [];
+            }
+          });
+        }
+
+        // Delete all the posts in categories that causes this error:
+        // "TypeError: Converting circular structure to JSON"
+        if (post.hasOwnProperty('categories')) {
+          let categoriesArr = post['categories']['data'];
+          categoriesArr.forEach(categoryObj => {
+            if (categoryObj.hasOwnProperty('posts')) {
+              categoryObj['posts']['data'] = [];
+            }
+          });
+        }
+
         db.push(post);
       });
     }
 
-    db = circularJSON.stringify(db);
+    db = JSON.stringify(db);
 
     return {
       path: config.path,
