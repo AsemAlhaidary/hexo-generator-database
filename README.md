@@ -40,4 +40,4 @@ indexing: false
 Then the generated result will not contain this post or page.
 
 ## Sponsor
-I have created and used this package in my sponsor's [Blog](https://2022.blog.richiebartlett.com/), you can find him at his [Website](https://richiebartlett.com/), also [Github](https://github.com/lorezyra)
+I have created and used this package in my sponsor's [Blog](https://blog.richiebartlett.com/), you can find him at his [Website](https://richiebartlett.com/), also [Github](https://github.com/lorezyra)

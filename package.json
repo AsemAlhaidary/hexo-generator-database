@@ -1,6 +1,6 @@
 {
   "name": "hexo-db-generator",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Generate a JSON file contains the Database of HEXO blog",
   "main": "index.js",
   "scripts": {
