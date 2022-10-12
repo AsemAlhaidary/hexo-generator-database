@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<posts> 
+  {% if posts %}
+  {% for post in posts.toArray() %}
+  {% if post.indexing !== false %}
+  <post>
+    <title>{{ post.title }}</title>
+    <path>{{ url + post.path }}</path>
+    <date>{{ post.date }}</date>
+    <updated>{{ post.updated }}</updated>
+    {% if post.sticky %}
+      <sticky>{{ post.sticky }}</sticky>
+    {% endif %}
+    {% if post.display_tag_onHome %}
+      <display_tag_onHome>{{ post.display_tag_onHome }}</display_tag_onHome>
+    {% endif %}
+    <excerpt>{{ post.excerpt }}</excerpt>
+    <content>{{ post.content }}</content>
+    <categories>
+      {% if post.categories.length > 0 %}
+      {% for category in post.categories.toArray() %}
+      <category>
+        <name>{{ category.name }}</name>
+        <path>{{ url + category.path }}</path>
+      </category>
+      {% endfor %}
+      {% endif %}
+    </categories>
+    <tags>
+      {% if post.tags.length > 0 %}
+      {% for tag in post.tags.toArray() %}
+      <tag>
+        <name>{{ tag.name }}</name>
+        <path>{{ url + tag.path }}</path>
+      </tag>
+      {% endfor %}
+      {% endif %}
+    </tags>
+  </post>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+</posts>

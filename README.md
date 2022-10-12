@@ -1,5 +1,5 @@
 # hexo-db-generator
-Generate a JSON file contains the Database of HEXO blog
+Extract the database of the HEXO blog into JSON or XML files
 
 ## Install
 
