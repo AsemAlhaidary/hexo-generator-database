@@ -8,6 +8,7 @@
     <path>{{ url + post.path }}</path>
     <date>{{ post.date }}</date>
     <updated>{{ post.updated }}</updated>
+    <img>{{ post.img }}</img>
     {% if post.sticky %}
       <sticky>{{ post.sticky }}</sticky>
     {% endif %}
