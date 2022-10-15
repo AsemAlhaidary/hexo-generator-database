@@ -3,7 +3,6 @@ const path = require('path');
 
 const generateJson = require('./lib/generate_json');
 const generateXml = require('./lib/generate_xml');
-// console.log(generateXml('asem'))
 
 let config = hexo.config.database = merge({
   path: 'db.json',

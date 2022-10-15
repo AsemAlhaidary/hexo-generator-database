@@ -9,6 +9,10 @@
     <date>{{ post.date }}</date>
     <updated>{{ post.updated }}</updated>
     <img>{{ post.img }}</img>
+    <sourceAuthorImg>{{ post.sourceAuthorImg }}</sourceAuthorImg>
+    <sourceAuthor>{{ post.sourceAuthor }}</sourceAuthor>
+    <sourceAuthURL>{{ post.source.author.img }}</sourceAuthURL>
+    <sourceAuth>{{ post.source.author.name }}</sourceAuth>
     {% if post.sticky %}
       <sticky>{{ post.sticky }}</sticky>
     {% endif %}
