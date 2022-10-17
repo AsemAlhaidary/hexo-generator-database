@@ -1,10 +1,10 @@
-# hexo-db-generator
-Extract the database of the HEXO blog into JSON or XML files
+# hexo-generator-database
+Extract the database of HEXO blog into JSON or XML files
 
 ## Install
 
 ``` bash
-$ npm install hexo-db-generator --save
+$ npm install hexo-generator-database --save
 ```
 
 ## Options
