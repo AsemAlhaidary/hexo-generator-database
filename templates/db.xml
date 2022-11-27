@@ -21,6 +21,16 @@
     {% endif %}
     <excerpt>{{ post.excerpt }}</excerpt>
     <content>{{ post.content }}</content>
+    {% if post.origin %}
+    <origin>
+      <url>{{ post.origin.url }}</url>
+      <author>
+        <name>{{ post.origin.author.name }}</name>
+        <img>{{ post.origin.author.img }}</img>
+        <published>{{ post.origin.author.published }}</published>
+      </author>
+    </origin>
+    {% endif %}
     <categories>
       {% if post.categories.length > 0 %}
       {% for category in post.categories.toArray() %}
