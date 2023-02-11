@@ -19,8 +19,8 @@
     {% if post.display_tag_onHome %}
       <display_tag_onHome>{{ post.display_tag_onHome }}</display_tag_onHome>
     {% endif %}
-    <excerpt>{{ post.excerpt }}</excerpt>
-    <content>{{ post.content }}</content>
+    <excerpt>{{ post.excerpt | unwantedCarts }}</excerpt>
+    <content>{{ post.content | unwantedCarts }}</content>
     {% if post.origin %}
     <origin>
       <url>{{ post.origin.url }}</url>
