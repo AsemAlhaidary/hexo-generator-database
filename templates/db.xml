@@ -19,6 +19,11 @@
     {% if post.display_tag_onHome %}
       <display_tag_onHome>{{ post.display_tag_onHome }}</display_tag_onHome>
     {% endif %}
+    <wordCount>{{ post.wordCount }}</wordCount>
+    <charCount>{{ post.charCount }}</charCount>
+    <imgCount>{{ post.imgCount }}</imgCount>
+    <vidCount>{{ post.vidCount }}</vidCount>
+    <readTime>{{ post.readTime }}</readTime>
     <excerpt>{{ post.excerpt | unwantedCarts }}</excerpt>
     <content>{{ post.content | unwantedCarts }}</content>
     {% if post.origin %}
