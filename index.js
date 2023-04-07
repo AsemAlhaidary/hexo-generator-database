@@ -4,10 +4,29 @@ const path = require('path');
 const generateJson = require('./lib/generate_json');
 const generateXml = require('./lib/generate_xml');
 
+const variables = {
+  title: true,
+  path: true,
+  date: true,
+  updated: true,
+  img: true,
+  excerpt: true,
+  content: true,
+  categories: {
+    name: true,
+    path: true,
+  },
+  tags: {
+    name: true,
+    path: true,
+  },
+};
+
 let config = hexo.config.database = merge({
   path: 'db.json',
   fields: ['post'],
-  root: '/'
+  root: '/',
+  variables: variables
 }, hexo.config.database);
 
 if (path.extname(config.path) == false) {

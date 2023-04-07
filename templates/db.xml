@@ -1,63 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+{% macro processProperties(postData, key, value) %}
+  {#% if postData %#}
+  <{{ key }}>
+    {% if postData | isObj and postData.length %}
+      {% for item in postData.toArray() %}
+        {% if key == 'categories' %}
+          <category>
+            {{ extractValues(item, key, value) }}
+          </category>
+        {% elif key == 'tags' %}
+          <tag>
+            {{ extractValues(item, key, value) }}
+          </tag>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {{ extractValues(postData, key, value) }}
+    {% endif %}
+  </{{ key }}>
+  {#% endif %#}
+{% endmacro %}
+
+{% macro extractValues(postData, key, value) %}
+  {% if value === true %}
+    {# In case of a direct value #}
+    {% if key == 'path' %}
+      {{ url + postData | unwantedCarts }}
+    {% else %}
+      {{ postData | unwantedCarts }}
+    {% endif %}
+  {% elif value | isObj %}
+    {# In case of a nested object #}
+    {% for k, v in value %}
+      <{{ k }}>
+        {{ extractValues(postData[k], k, v) }}
+      </{{ k }}>
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
 <posts> 
   {% if posts %}
-  {% for post in posts.toArray() %}
-  {% if post.indexing !== false %}
-  <post>
-    <title>{{ post.title }}</title>
-    <path>{{ url + post.path }}</path>
-    <date>{{ post.date }}</date>
-    <updated>{{ post.updated }}</updated>
-    <img>{{ post.img }}</img>
-    <sourceAuthorImg>{{ post.sourceAuthorImg }}</sourceAuthorImg>
-    <sourceAuthor>{{ post.sourceAuthor }}</sourceAuthor>
-    <sourceAuthURL>{{ post.source.author.img }}</sourceAuthURL>
-    <sourceAuth>{{ post.source.author.name }}</sourceAuth>
-    {% if post.sticky %}
-      <sticky>{{ post.sticky }}</sticky>
-    {% endif %}
-    {% if post.display_tag_onHome %}
-      <display_tag_onHome>{{ post.display_tag_onHome }}</display_tag_onHome>
-    {% endif %}
-    <wordCount>{{ post.wordCount }}</wordCount>
-    <charCount>{{ post.charCount }}</charCount>
-    <imgCount>{{ post.imgCount }}</imgCount>
-    <vidCount>{{ post.vidCount }}</vidCount>
-    <readTime>{{ post.readTime }}</readTime>
-    <excerpt>{{ post.excerpt | unwantedCarts }}</excerpt>
-    <content>{{ post.content | unwantedCarts }}</content>
-    {% if post.origin %}
-    <origin>
-      <url>{{ post.origin.url }}</url>
-      <author>
-        <name>{{ post.origin.author.name }}</name>
-        <img>{{ post.origin.author.img }}</img>
-        <published>{{ post.origin.author.published }}</published>
-      </author>
-    </origin>
-    {% endif %}
-    <categories>
-      {% if post.categories.length > 0 %}
-      {% for category in post.categories.toArray() %}
-      <category>
-        <name>{{ category.name }}</name>
-        <path>{{ url + category.path }}</path>
-      </category>
-      {% endfor %}
+    {% for post in posts.toArray() %}
+      {% if post.indexing !== false %}
+        <post>
+          {% for varKey, varVal in variables %}
+            {{ processProperties(post[varKey], varKey, varVal) }}
+          {% endfor %}
+        </post>
       {% endif %}
-    </categories>
-    <tags>
-      {% if post.tags.length > 0 %}
-      {% for tag in post.tags.toArray() %}
-      <tag>
-        <name>{{ tag.name }}</name>
-        <path>{{ url + tag.path }}</path>
-      </tag>
-      {% endfor %}
-      {% endif %}
-    </tags>
-  </post>
-  {% endif %}
-  {% endfor %}
+    {% endfor %}
   {% endif %}
 </posts>
